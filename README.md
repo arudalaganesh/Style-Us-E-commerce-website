@@ -95,7 +95,9 @@ No server required — works directly in the browser.
 ---
 
 ## 📸 Screenshots  
-(Add screenshots after uploading files)
+<img width="1099" height="581" alt="Screenshot 2025-11-13 190658" src="https://github.com/user-attachments/assets/91782c75-7f8a-4d5f-b31c-ce1ccb33b5f4" />
+
+
 
 ---
 
