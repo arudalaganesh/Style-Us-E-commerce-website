@@ -95,7 +95,16 @@ No server required — works directly in the browser.
 ---
 
 ## 📸 Screenshots  
+
 <img width="1099" height="581" alt="Screenshot 2025-11-13 190658" src="https://github.com/user-attachments/assets/91782c75-7f8a-4d5f-b31c-ce1ccb33b5f4" />
+
+<img width="1906" height="891" alt="Screenshot 2025-11-13 190820" src="https://github.com/user-attachments/assets/f23e3a48-99af-4469-8e9f-dac069d7f9ac" />
+
+![WhatsApp Image 2025-11-28 at 20 04 02_a047d9db](https://github.com/user-attachments/assets/b6c7e3a5-8a49-4e18-9d73-af9c40b53240)
+
+
+<img width="1912" height="626" alt="Screenshot 2025-11-13 190843" src="https://github.com/user-attachments/assets/591a69c1-173b-4fdd-98d5-5155a493a7ae" />
+
 
 
 
