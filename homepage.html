@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLE US - Stretched E-commerce Layout</title>
+    <style>
+        /* 1. Basic Reset and Page Setup */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background-color: #f8f8f8; 
+        }
+
+        /* 2. Header (Top Black Bar) */
+        .header {
+            background-color: #EBE5DF; 
+            color: black; 
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 58px; 
+            box-sizing: border-box;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-left a {
+            color: black; 
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+            flex-grow: 1; 
+        }
+
+        .header-icons {
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icons span, .header-icons a {
+            margin-left: 15px;
+            color: black;
+            text-decoration: none;
+        }
+        
+        .cart-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-count-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7em;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* UPDATED: Search Form Styling */
+        .search-form {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        #search-input {
+            border: 1px solid #555;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            padding: 8px;
+            font-size: 0.9em;
+            outline: none;
+        }
+        .search-form button {
+            background: #f0f0f0;
+            border: 1px solid #555;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            color: #333;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+        
+        /* 3. Main Content Area */
+        .main-content {
+            display: flex;
+            min-height: calc(100vh - 58px);
+            border: 3px solid #EBE5DF; 
+        }
+
+        /* 4. Sidebar Navigation */
+        .sidebar {
+            width: 200px;
+            padding: 20px 0;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #ffffff;
+            border-right: none; 
+            min-height: 100%;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 8px 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .sidebar .main-category {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .sidebar .sub-category {
+            padding-left: 30px;
+            font-weight: normal;
+        }
+
+
+        /* 5. Product Grid (The Main Area) */
+        .product-grid-area {
+            flex-grow: 1;
+            padding: 20px;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #f8f8f8;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+            margin-bottom: 30px;
+        }
+
+        /* 6. Individual Product Box */
+        .product-item {
+            background-color: white; 
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .product-image-container {
+            width: 100%; 
+            height: 300px;
+            margin-bottom: 10px;
+            overflow: hidden; 
+        }
+        
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        .product-name {
+            margin: 5px 0 10px 0;
+            font-weight: bold;
+        }
+
+        .product-price {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <a href="homepage.html">Home</a>
+        </div>
+        <div class="logo">STYLE US</div>
+        <div class="header-icons">
+            <form id="search-form" class="search-form">
+                <input type="search" id="search-input" placeholder="Search...">
+                <button type="submit" class="search-button">&#128269;</button>
+            </form>
+            <a href="login.html"><span>👤</span></a>
+            <a href="cart.html" class="cart-link">
+                <span>🛒 Cart</span>
+                <span id="cart-count" class="cart-count-badge">0</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+
+        <div class="sidebar">
+            <a href="#" class="main-category">Mens Fashion</a>
+            <a href="30products.html#tshirts-products" class="sub-category">T-shirts</a>
+            <a href="30products.html#shirts-products" class="sub-category">Shirts</a>
+            <a href="30products.html#mens_jeans-products" class="sub-category">Jeans</a> 
+
+            <a href="#" class="main-category">Womens Fashion</a>
+            <a href="30products.html#dresses-products" class="sub-category">Dress</a>
+            <a href="30products.html#tops-products" class="sub-category">Top</a>
+            <a href="30products.html#womens_jeans-products" class="sub-category">Jeans</a>
+        </div>
+
+        <div class="product-grid-area">
+
+            <div class="section-title">New Arrivals</div>
+            <div class="product-grid">
+                
+                <div class="product-item">
+                    <a href="product_detail.html?image=./images/tshirt1.jpg&name=Classic Crew Neck T-Shirt&price=₹799&desc=A timeless essential, this classic crew neck t-shirt is made from 100% soft cotton for maximum comfort. Perfect for layering or wearing on its own.&reviewSet=1" class="product-link">
+                        <div class="product-image-container">
+                            <img src="./images/tshirt1.jpg" alt="T-shirt 1 Image">
+                        </div>
+                        <div class="product-name">Classic Crew Neck T-Shirt</div>
+                    </a>
+                    <div class="product-price">₹799</div>
+                </div>
+                
+                <div class="product-item">
+                    <a href="product_detail.html?image=./images/jeans1.jpg&name=Relaxed Fit Light-Wash Jeans&price=₹1,999&desc=For a more casual, laid-back vibe. These relaxed fit jeans offer maximum comfort without sacrificing style, featuring a classic five-pocket design.&reviewSet=2" class="product-link">
+                        <div class="product-image-container">
+                            <img src="./images/jeans1.jpg" alt="Jeans 1 Image">
+                        </div>
+                        <div class="product-name">Relaxed Fit Light-Wash Jeans</div>
+                    </a>
+                    <div class="product-price">₹1,999</div>
+                </div>
+                
+                <div class="product-item">
+                    <a href="product_detail.html?image=./images/jeans2.jpg&name=Tapered Fit Ripped Jeans&price=₹2,299&desc=Modern style meets urban edge. These tapered jeans feature subtle distressing and rips for a fashionable, lived-in look.&reviewSet=1" class="product-link">
+                        <div class="product-image-container">
+                            <img src="./images/jeans2.jpg" alt="Jeans 2 Image">
+                        </div>
+                        <div class="product-name">Tapered Fit Ripped Jeans</div>
+                    </a>
+                    <div class="product-price">₹2,299</div>
+                </div>
+                
+                <div class="product-item">
+                    <a href="product_detail.html?image=tshirt2.jpg&name=Striped Crew Neck T-Shirt&price=₹899&desc=Stay stylish with this classic striped crew neck. Made from a soft cotton blend, it offers a comfortable fit for everyday wear and pairs well with any jeans.&reviewSet=2" class="product-link">
+                        <div class="product-image-container">
+                            <img src="tshirt2.jpg" alt="T-shirt 2 Image">
+                        </div>
+                        <div class="product-name">Striped Crew Neck T-Shirt</div>
+                    </a>
+                    <div class="product-price">₹899</div>
+                </div>
+                
+                <div class="product-item">
+                     <a href="product_detail.html?image=./images/shirt1.jpg&name=Oxford Button-Down Shirt&price=₹1,299&desc=The timeless Oxford shirt. A sharp, versatile piece that works for the office or a smart-casual event. Features a button-down collar and a chest pocket.&reviewSet=1" class="product-link">
+                        <div class="product-image-container">
+                            <img src="./images/shirt1.jpg" alt="Shirt 1 Image">
+                        </div>
+                        <div class="product-name">Oxford Button-Down Shirt</div>
+                    </a>
+                    <div class="product-price">₹1,299</div>
+                </div>
+                
+                <div class="product-item">
+                    <a href="product_detail.html?image=jeans1.jpg&name=Straight Fit Dark-Wash Jeans&price=₹1,899&desc=A timeless classic. The straight fit and dark wash make these jeans incredibly versatile for any occasion, from casual outings to smarter events.&reviewSet=2" class="product-link">
+                        <div class="product-image-container">
+                            <img src="jeans1.jpg" alt="Jeans 3 Image">
+                        </div>
+                        <div class="product-name">Straight Fit Dark-Wash Jeans</div>
+                    </a>
+                    <div class="product-price">₹1,899</div>
+                </div>
+            </div>
+            </div>
+
+    </div>
+
+    <script>
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountBadge = document.getElementById('cart-count');
+            
+            if (totalItems > 0) {
+                cartCountBadge.textContent = totalItems;
+                cartCountBadge.style.display = 'block';
+            } else {
+                cartCountBadge.style.display = 'none';
+            }
+        }
+        
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-input').value.trim();
+            if (query) {
+                window.location.href = `30products.html?search=${encodeURIComponent(query)}`;
+            }
+        });
+        
+        if (navigator.userAgent.includes("Edg/")) {
+            const searchButtons = document.querySelectorAll('.search-button');
+            const edgeIconSvg = `<svg viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>`;
+            searchButtons.forEach(button => button.innerHTML = edgeIconSvg);
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>

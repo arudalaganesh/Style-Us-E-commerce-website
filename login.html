@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .back-home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #333;
+      text-decoration: none;
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .back-home-btn:hover {
+      color: #000;
+    }
+
+    .container {
+      width: 300px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin: 100px auto;
+    }
+
+    .input-group {
+      position: relative;
+      width: 90%;
+      margin: 10px auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    button {
+      width: 95%;
+      padding: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #555;
+    }
+
+    a {
+      text-decoration: none;
+      color: blue;
+      font-size: 14px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="homepage.html" class="back-home-btn">←</a>
+
+  <div class="container" id="login">
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(); return false;">
+      <div class="input-group">
+        <input type="text" placeholder="Email or Phone Number" required>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="loginPass" placeholder="Password" required>
+        <span class="eye-icon" onclick="togglePassword('loginPass', this)">👁️</span>
+      </div>
+
+      <button type="submit">Login</button><br><br>
+      <p>Don't have an account?</p>
+      <a href="#" onclick="showSignup()">Create New Account</a>
+    </form>
+  </div>
+
+  <div class="container" id="signup" style="display:none;">
+    <h2>Create Account</h2>
+    <form onsubmit="goToLogin(); return false;">
+      <div class="input-group">
+        <input type="text" placeholder="Full Name" required>
+      </div>
+
+      <div class="input-group">
+        <input type="email" placeholder="Email" required>
+      </div>
+
+      <div class="input-group">
+        <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" title="Enter 10 digits" required>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="signupPass" placeholder="Password (min 6 chars)" minlength="6" required>
+        <span class="eye-icon" onclick="togglePassword('signupPass', this)">👁️</span>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="confirmPass" placeholder="Confirm Password" minlength="6" required>
+        <span class="eye-icon" onclick="togglePassword('confirmPass', this)">👁️</span>
+      </div>
+
+      <button type="submit">Sign Up</button><br><br>
+      <a href="#" onclick="showLogin()">Back to Login</a>
+    </form>
+  </div>
+
+  <script>
+    // NEW: This function handles the login and redirects to the homepage
+    function handleLogin() {
+        alert("Login successful! Returning to the homepage.");
+        window.location.href = "homepage.html";
+    }
+
+    function showSignup() {
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('signup').style.display = 'block';
+    }
+
+    function showLogin() {
+      document.getElementById('signup').style.display = 'none';
+      document.getElementById('login').style.display = 'block';
+    }
+
+    function goToLogin() {
+      alert("Account created successfully!");
+      showLogin();
+    }
+
+    function togglePassword(id, eye) {
+      const field = document.getElementById(id);
+      if (field.type === "password") {
+        field.type = "text";
+        eye.textContent = "🙈";
+      } else {
+        field.type = "password";
+        eye.textContent = "👁️";
+      }
+    }
+  </script>
+
+</body>
+</html>

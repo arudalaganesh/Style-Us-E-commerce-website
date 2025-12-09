@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLE US - Shopping Cart</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f8f8f8; }
+        .header { background-color: #EBE5DF; color: black; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; height: 58px; box-sizing: border-box; border-bottom: 1px solid #ddd; }
+        .header-left a { color: black; text-decoration: none; margin-right: 20px; }
+        .logo { font-size: 1.5em; font-weight: bold; letter-spacing: 2px; text-align: center; flex-grow: 1; }
+        .header-icons { font-size: 1.2em; display: flex; align-items: center; }
+        .header-icons span, .header-icons a { margin-left: 15px; color: black; text-decoration: none; }
+        .cart-link { position: relative; display: inline-block; }
+        .cart-count-badge { position: absolute; top: -8px; right: -12px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.7em; font-weight: bold; display: none; }
+        
+        /* UPDATED: Search Form Styling */
+        .search-form {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        #search-input {
+            border: 1px solid #555;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            padding: 8px;
+            font-size: 0.9em;
+            outline: none;
+        }
+        .search-form button {
+            background: #f0f0f0;
+            border: 1px solid #555;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            color: #333;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        /* NEW: Title & Back Link Style */
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .section-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .section-title a:hover {
+            text-decoration: underline;
+        }
+
+        .cart-container { display: flex; flex-direction: column; padding: 40px 20px; max-width: 1200px; margin: auto; }
+        .cart-content { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
+        .cart-details { flex: 2; min-width: 320px; max-width: 700px; }
+        .cart-details h1, .order-summary h2 { font-size: 1.5em; margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        .cart-item { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid #eee; }
+        .cart-item img { width: 100px; height: 120px; object-fit: cover; border: 1px solid #eee; }
+        .item-info { flex-grow: 1; display: flex; justify-content: space-between; }
+        .item-info-left { display: flex; flex-direction: column; gap: 8px; }
+        .item-name { font-weight: bold; }
+        .item-price, .item-size { color: #555; font-size: 0.9em; }
+        .item-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 15px; text-align: right; }
+        .item-total-price { font-weight: bold; }
+        .quantity-selector { display: flex; align-items: center; border: 1px solid #ccc; }
+        .quantity-btn { background: none; border: none; cursor: pointer; padding: 5px 10px; font-size: 1.2em; }
+        .quantity-input { width: 40px; text-align: center; border: none; border-left: 1px solid #ccc; border-right: 1px solid #ccc; padding: 5px 0; }
+        .remove-item { background: none; border: none; cursor: pointer; font-size: 1.2em; color: #888; }
+        .order-summary { flex: 1; min-width: 300px; padding: 20px; background-color: #fdfdfd; border: 1px solid #eee; height: fit-content; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        #estimate-delivery { text-decoration: underline; font-size: 0.9em; color: #555; cursor: pointer; }
+        .summary-total { font-weight: bold; font-size: 1.2em; padding-top: 15px; border-top: 1px solid #ddd; }
+        .checkout-btn { width: 100%; padding: 15px; background-color: black; color: white; border: none; font-size: 1em; text-transform: uppercase; cursor: pointer; margin-top: 10px; }
+        .secure-checkout { text-align: center; margin-top: 15px; font-size: 0.9em; color: #555; }
+        .empty-cart-message { text-align: center; padding: 50px; font-size: 1.2em; color: #777; }
+        .empty-cart-message a { color: black; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <a href="homepage.html">Home</a>
+        </div>
+        <div class="logo">STYLE US</div>
+        <div class="header-icons">
+            <form id="search-form" class="search-form">
+                <input type="search" id="search-input" placeholder="Search...">
+                <button type="submit" class="search-button">&#128269;</button>
+            </form>
+            <a href="login.html"><span>👤</span></a>
+            <a href="cart.html" class="cart-link">
+                <span>🛒 Cart</span>
+                <span id="cart-count" class="cart-count-badge">0</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="cart-container">
+        <div class="section-title">
+            <a href="#" onclick="history.back(); return false;">← Back to Shopping</a>
+        </div>
+        <div class="cart-content">
+            <div class="cart-details">
+                <h1>My cart</h1>
+                <div id="cart-items-container">
+                </div>
+            </div>
+            <div class="order-summary">
+                <h2>Order summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal-price">₹0.00</span>
+                </div>
+                 <div class="summary-row">
+                    <span id="estimate-delivery">Estimate Delivery</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="total-price">₹0.00</span>
+                </div>
+                <button class="checkout-btn" onclick="goToCheckout()">Buy Now</button>
+                <p class="secure-checkout">🔒 Secure Checkout</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const subtotalPriceEl = document.getElementById('subtotal-price');
+            const totalPriceEl = document.getElementById('total-price');
+
+            function renderCart() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cartItemsContainer.innerHTML = '';
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `<div class="empty-cart-message"><p>Your cart is empty.</p><a href="homepage.html">Continue Shopping</a></div>`;
+                    updateSummary(0);
+                    return;
+                }
+
+                let subtotal = 0;
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('cart-item');
+                    const itemPrice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+                    const itemTotalPrice = itemPrice * item.quantity;
+                    subtotal += itemTotalPrice;
+
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-info">
+                            <div class="item-info-left">
+                                <span class="item-name">${item.name}</span>
+                                <span class="item-price">${item.price}</span>
+                                <span class="item-size">Size: ${item.size}</span>
+                            </div>
+                            <div class="item-actions">
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn minus-btn" data-id="${item.id}">-</button>
+                                    <input type="text" class="quantity-input" value="${item.quantity}" readonly>
+                                    <button class="quantity-btn plus-btn" data-id="${item.id}">+</button>
+                                </div>
+                                <span class="item-total-price">₹${itemTotalPrice.toFixed(2)}</span>
+                                <button class="remove-item" data-id="${item.id}">🗑️</button>
+                            </div>
+                        </div>`;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+                
+                updateSummary(subtotal);
+                addEventListeners();
+            }
+
+            function updateSummary(subtotal) {
+                subtotalPriceEl.textContent = `₹${subtotal.toFixed(2)}`;
+                totalPriceEl.textContent = `₹${subtotal.toFixed(2)}`;
+            }
+
+            function addEventListeners() {
+                document.querySelectorAll('.remove-item').forEach(button => { button.addEventListener('click', (e) => removeItem(e.target.dataset.id)); });
+                document.querySelectorAll('.plus-btn').forEach(button => { button.addEventListener('click', (e) => updateQuantity(e.target.dataset.id, 1)); });
+                document.querySelectorAll('.minus-btn').forEach(button => { button.addEventListener('click', (e) => updateQuantity(e.target.dataset.id, -1)); });
+            }
+            
+            function removeItem(itemId) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart = cart.filter(item => item.id != itemId);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCart();
+                updateCartCount();
+            }
+
+            function updateQuantity(itemId, change) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const item = cart.find(item => item.id == itemId);
+                if (item) {
+                    item.quantity += change;
+                    if (item.quantity <= 0) { removeItem(itemId); } 
+                    else { localStorage.setItem('cart', JSON.stringify(cart)); renderCart(); updateCartCount(); }
+                }
+            }
+
+            renderCart();
+        });
+        
+        function goToCheckout() {
+            if ((JSON.parse(localStorage.getItem('cart')) || []).length > 0) { window.location.href = 'buynow.html'; } 
+            else { alert('Your cart is empty. Please add items to proceed to checkout.'); }
+        }
+    </script>
+    <script>
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountBadge = document.getElementById('cart-count');
+            
+            if (totalItems > 0) {
+                cartCountBadge.textContent = totalItems;
+                cartCountBadge.style.display = 'block';
+            } else {
+                cartCountBadge.style.display = 'none';
+            }
+        }
+        
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-input').value.trim();
+            if (query) {
+                window.location.href = `30products.html?search=${encodeURIComponent(query)}`;
+            }
+        });
+        
+        if (navigator.userAgent.includes("Edg/")) {
+            const searchButtons = document.querySelectorAll('.search-button');
+            const edgeIconSvg = `<svg viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>`;
+            searchButtons.forEach(button => button.innerHTML = edgeIconSvg);
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>

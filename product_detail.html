@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLE US - Product Details</title>
+    <style>
+        /* 1. Basic Reset and Page Setup */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background-color: #f8f8f8; 
+        }
+
+        /* 2. Header */
+        .header {
+            background-color: #EBE5DF; 
+            color: black; 
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 58px; 
+            box-sizing: border-box;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-left a {
+            color: black; 
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+            flex-grow: 1; 
+        }
+
+        .header-icons {
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons span, .header-icons a {
+            margin-left: 15px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .cart-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-count-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7em;
+            font-weight: bold;
+            display: none;
+        }
+        
+        /* UPDATED: Search Form Styling */
+        .search-form {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        #search-input {
+            border: 1px solid #555;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            padding: 8px;
+            font-size: 0.9em;
+            outline: none;
+        }
+        .search-form button {
+            background: #f0f0f0;
+            border: 1px solid #555;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            color: #333;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .main-content {
+            display: flex;
+            min-height: calc(100vh - 58px);
+            border: 3px solid #EBE5DF; 
+        }
+
+        .sidebar {
+            width: 200px;
+            padding: 20px 0;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #ffffff;
+            min-height: 100%;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 8px 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .sidebar .main-category {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .sidebar .sub-category {
+            padding-left: 30px;
+            font-weight: normal;
+        }
+        
+        /* NEW: Title & Back Link Style */
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .section-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .section-title a:hover {
+            text-decoration: underline;
+        }
+        
+        .product-detail-area {
+            flex-grow: 1;
+            padding: 40px;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* This will vertically center the content */
+            gap: 30px;
+        }
+
+        /* NEW WRAPPER FOR ALIGNMENT */
+        .product-display-wrapper {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .product-container {
+            display: flex;
+            background-color: white;
+            padding: 30px;
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .product-image-large { flex: 1; }
+        .product-image-large img { width: 400px; height: 500px; object-fit: cover; }
+        .product-info { flex: 1; display: flex; flex-direction: column; }
+        .product-info .product-name { font-size: 2em; font-weight: bold; margin: 0 0 10px 0; }
+        .product-info .product-price { font-size: 1.5em; color: #333; margin-bottom: 20px; }
+        .product-info .product-description { font-size: 0.95em; line-height: 1.6; color: #666; margin-bottom: 20px; }
+        .section-label { margin: 0 0 10px 0; font-weight: bold; }
+        .product-color { margin-bottom: 20px; }
+        .product-color p { margin: 0; font-size: 1em; }
+        .product-color .label { font-weight: bold; }
+        .size-buttons { display: flex; gap: 10px; margin-bottom: 30px; }
+        .size-btn { padding: 10px 15px; border: 1px solid #ccc; background-color: #fff; cursor: pointer; font-size: 1em; }
+        .size-btn:hover { background-color: #f0f0f0; }
+        .size-btn.active { background-color: #333; color: white; border-color: #333; }
+        .add-cart-btn { background-color: black; color: white; border: none; padding: 15px 25px; cursor: pointer; text-transform: uppercase; font-size: 1em; width: 100%; }
+        .add-to-cart-confirmation { display: none; margin-top: 15px; padding: 10px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; text-align: center; font-size: 0.9em; }
+        
+        .reviews-section { background-color: white; padding: 30px; max-width: 1000px; width: 100%; margin-top: 30px; }
+        .reviews-section h2 { margin-top: 0; }
+
+        .review-form input, .review-form select, .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+        .review-form textarea { min-height: 80px; }
+        .review-form button { background-color: #333; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; }
+        
+        .existing-reviews { margin-top: 30px; }
+        .review-item { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .review-item:last-child { border-bottom: none; }
+        .reviewer-info { font-weight: bold; margin-bottom: 5px; }
+        .review-item p { margin: 0; color: #555; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <a href="homepage.html">Home</a>
+        </div>
+        <div class="logo">STYLE US</div>
+        <div class="header-icons">
+            <form id="search-form" class="search-form">
+                <input type="search" id="search-input" placeholder="Search...">
+                <button type="submit" class="search-button">&#128269;</button>
+            </form>
+            <a href="login.html"><span>👤</span></a>
+            <a href="cart.html" class="cart-link">
+                <span>🛒 Cart</span>
+                <span id="cart-count" class="cart-count-badge">0</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+
+        <div class="sidebar">
+            <a href="#" class="main-category">Mens Fashion</a>
+            <a href="30products.html#tshirts-products" class="sub-category">T-shirts</a>
+            <a href="30products.html#shirts-products" class="sub-category">Shirts</a>
+            <a href="30products.html#mens_jeans-products" class="sub-category">Jeans</a> 
+
+            <a href="#" class="main-category">Womens Fashion</a>
+            <a href="30products.html#dresses-products" class="sub-category">Dress</a>
+            <a href="30products.html#tops-products" class="sub-category">Top</a>
+            <a href="30products.html#womens_jeans-products" class="sub-category">Jeans</a>
+        </div>
+
+        <div class="product-detail-area">
+            <div class="product-display-wrapper">
+                <div class="section-title">
+                    <a href="#" onclick="history.back(); return false;">← Back</a>
+                </div>
+                <div class="product-container">
+                    <div class="product-image-large">
+                        <img src="" alt="Detailed view of product">
+                    </div>
+                    <div class="product-info">
+                        <h1 class="product-name">Product Name</h1>
+                        <p class="product-price">₹0</p>
+                        <p class="product-description">Product description will load here.</p>
+                        <div class="product-color">
+                            <p><span class="label">Color:</span> Blue</p>
+                        </div>
+                        <div class="size-selector">
+                            <p class="section-label">Select Size:</p>
+                            <div class="size-buttons">
+                                <button class="size-btn">S</button>
+                                <button class="size-btn">M</button>
+                                <button class="size-btn">L</button>
+                                <button class="size-btn">XL</button>
+                                <button class="size-btn">XXL</button>
+                            </div>
+                        </div>
+                        <button class="add-cart-btn">Add to Cart</button>
+                        <div class="add-to-cart-confirmation" id="cart-confirmation-message"></div>
+                    </div>
+                </div>
+                <div class="reviews-section">
+                    <h2>Product Reviews</h2>
+                    <div class="review-form">
+                        <h3>Write a Review</h3>
+                        <form id="review-form">
+                            <input type="text" id="reviewer-name" placeholder="Your Name" required>
+                            <select id="review-rating" required>
+                                <option value="" disabled selected>Select a rating...</option>
+                                <option value="⭐⭐⭐⭐⭐">5 Stars</option>
+                                <option value="⭐⭐⭐⭐">4 Stars</option>
+                                <option value="⭐⭐⭐">3 Stars</option>
+                                <option value="⭐⭐">2 Stars</option>
+                                <option value="⭐">1 Star</option>
+                            </select>
+                            <textarea id="review-text" placeholder="Share your thoughts about this product..." required></textarea>
+                            <button type="submit">Submit Review</button>
+                        </form>
+                    </div>
+                    <div class="existing-reviews">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- 1. GET DATA FROM URL & UPDATE PAGE ---
+            const params = new URLSearchParams(window.location.search);
+            const image = params.get('image');
+            const name = params.get('name');
+            const price = params.get('price');
+            const desc = params.get('desc');
+            const reviewSet = params.get('reviewSet');
+            
+            if (image) {
+                document.querySelector('.product-image-large img').src = image;
+                document.querySelector('.product-image-large img').alt = name;
+            }
+            if (name) document.querySelector('.product-name').textContent = name;
+            if (price) document.querySelector('.product-price').textContent = price;
+            if (desc) document.querySelector('.product-description').textContent = desc;
+
+            // --- 2. HANDLE REVIEWS ---
+            const reviews = {
+                set1: [{ name: 'Arjun Kumar', rating: '⭐⭐⭐⭐⭐', text: 'Excellent quality and perfect fit! The fabric is very soft. Highly recommended.' }, { name: 'Sameer Reddy', rating: '⭐⭐⭐⭐⭐', text: 'I love this! It is my new favorite. I have already ordered another one.' }],
+                set2: [{ name: 'Priya Sharma', rating: '⭐⭐⭐⭐', text: 'Good product for the price. The color is exactly as shown in the picture.' }, { name: 'Vikram Singh', rating: '⭐⭐⭐⭐', text: 'Solid purchase. Fits well and looks smart. Good value for money.' }],
+                set3: [{ name: 'Sneha Patel', rating: '⭐⭐⭐⭐⭐', text: 'Absolutely gorgeous! The fit is so flattering and the material feels high quality. Received so many compliments!'}, { name: 'Meera Desai', rating: '⭐⭐⭐⭐', text: 'Very pretty and comfortable for all-day wear. The color is vibrant and just like the photo.'}],
+                set4: [{ name: 'Nisha Gupta', rating: '⭐⭐⭐⭐', text: 'Stylish and fits well. It is a great addition to my wardrobe. Happy with my purchase.'}, { name: 'Aditi Rao', rating: '⭐⭐⭐', text: 'It is an okay product. The material is a bit thinner than I expected, but it is fine for casual wear.'}]
+            };
+            const reviewContainer = document.querySelector('.existing-reviews');
+            reviewContainer.innerHTML = ''; 
+            let selectedReviews = reviews[`set${reviewSet}`] || reviews.set1;
+            selectedReviews.forEach(review => {
+                const reviewItem = document.createElement('div');
+                reviewItem.classList.add('review-item');
+                reviewItem.innerHTML = `<div class="reviewer-info">${review.name} - ${review.rating}</div><p>${review.text}</p>`;
+                reviewContainer.appendChild(reviewItem);
+            });
+
+            // --- 3. HANDLE SIZE SELECTION ---
+            let selectedSize = null;
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    sizeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedSize = button.textContent;
+                });
+            });
+
+            // --- 4. HANDLE "ADD TO CART" BUTTON ---
+            const addToCartButton = document.querySelector('.add-cart-btn');
+            const confirmationMessage = document.getElementById('cart-confirmation-message');
+            addToCartButton.addEventListener('click', () => {
+                if (!selectedSize) {
+                    alert('Please select a size.');
+                    return;
+                }
+                const productName = document.querySelector('.product-name').textContent;
+                const productPrice = document.querySelector('.product-price').textContent;
+                const productImage = document.querySelector('.product-image-large img').src;
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(item => item.name === productName && item.size === selectedSize);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ id: Date.now(), name: productName, price: productPrice, size: selectedSize, quantity: 1, image: productImage });
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                confirmationMessage.textContent = `'${productName}' has been added to your cart.`;
+                confirmationMessage.style.display = 'block';
+                setTimeout(() => { confirmationMessage.style.display = 'none'; }, 3000);
+            });
+            
+            // --- 5. HANDLE REVIEW FORM SUBMISSION ---
+            const reviewForm = document.getElementById('review-form');
+            reviewForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const reviewerName = document.getElementById('reviewer-name').value;
+                const reviewRating = document.getElementById('review-rating').value;
+                const reviewText = document.getElementById('review-text').value;
+
+                const newReview = document.createElement('div');
+                newReview.classList.add('review-item');
+                newReview.innerHTML = `
+                    <div class="reviewer-info">${reviewerName} - ${reviewRating}</div>
+                    <p>${reviewText}</p>
+                `;
+                reviewContainer.appendChild(newReview);
+                reviewForm.reset();
+            });
+        });
+    </script>
+    <script>
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountBadge = document.getElementById('cart-count');
+            
+            if (totalItems > 0) {
+                cartCountBadge.textContent = totalItems;
+                cartCountBadge.style.display = 'block';
+            } else {
+                cartCountBadge.style.display = 'none';
+            }
+        }
+
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-input').value.trim();
+            if (query) {
+                window.location.href = `30products.html?search=${encodeURIComponent(query)}`;
+            }
+        });
+        
+        // NEW: Change search icon for Edge browser
+        if (navigator.userAgent.includes("Edg/")) {
+            const searchButtons = document.querySelectorAll('.search-button');
+            const edgeIconSvg = `<svg viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>`;
+            searchButtons.forEach(button => button.innerHTML = edgeIconSvg);
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>
