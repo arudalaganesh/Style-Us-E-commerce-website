@@ -77,7 +77,7 @@ STYLE-US/
 
 1. Clone or download the repository:
 
-git clone https://github.com/yourusername/STYLE-US.git
+git clone https://github.com/arudalaganesh/STYLE-US.git
 
 
 2. Open the folder:
